@@ -8,19 +8,19 @@ class Program
         string userInput = Console.ReadLine();
         int grade = int.Parse(userInput);
         string letter_grade;
-        if (grade > 90){
+        if (grade >= 90){
             // Console.WriteLine("A");
             letter_grade = "A";
         }
-        else if (grade > 80){
+        else if (grade >= 80){
             // Console.WriteLine("B");
             letter_grade = "B";
         }
-        else if (grade > 70){
+        else if (grade >= 70){
             // Console.WriteLine("C");
             letter_grade = "C";
         }
-        else if (grade > 60){
+        else if (grade >= 60){
             // Console.WriteLine("D");
             letter_grade = "D";
         }
@@ -32,7 +32,7 @@ class Program
         Console.WriteLine("Your grade: ");
         Console.WriteLine(letter_grade);
 
-        if (grade > 70){
+        if (grade >= 70){
             Console.WriteLine("Well done! You've passed!");
         }
         else{
