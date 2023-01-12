@@ -25,14 +25,14 @@ class Program
 
     static int PromptUserNumber()
     {
-        Console.WriteLine("Please enter your name: ");
+        Console.WriteLine("Please enter your favorite number: ");
         string userInput = Console.ReadLine() ?? "";
         int num = int.Parse(userInput);
         return num;
     }
 
     static int SquareNumber(int number){
-        int num = number^2;
+        int num = number*number;
         return num;
     }
 
