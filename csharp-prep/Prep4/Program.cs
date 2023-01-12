@@ -25,6 +25,10 @@ class Program
 
             numbers.Add(num);
 
+            Console.Write("Enter number: ");
+            userInput = Console.ReadLine() ?? "";
+            num = int.Parse(userInput);
+
         }
 
         //Using Loops and erasing past information
