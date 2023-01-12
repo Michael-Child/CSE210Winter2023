@@ -28,7 +28,6 @@ class Program
             guess = int.Parse(userInput);
         }
 
-        Console.WriteLine($"You guessed it! {num}");
-
+        Console.WriteLine("You guessed it!" + num);
     }
 }
