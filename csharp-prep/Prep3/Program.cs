@@ -10,7 +10,9 @@ class Program
         Random randomGenerator = new Random();
         int num = randomGenerator.Next(1, 100);
 
-        int guess = 0;
+        Console.Write("What is your guess? ");
+        string userInput = Console.ReadLine();
+        int guess = int.Parse(userInput);
 
         while (guess != num)
         {
@@ -20,9 +22,13 @@ class Program
             else if (guess <= num){
                 Console.WriteLine("Higher");
             }
+
+            Console.Write("What is your guess? ");
+            userInput = Console.ReadLine();
+            guess = int.Parse(userInput);
         }
 
-        Console.WriteLine("You guessed it!");
+        Console.WriteLine($"You guessed it! {num}");
 
     }
 }
