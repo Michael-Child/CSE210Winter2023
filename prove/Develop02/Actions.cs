@@ -13,7 +13,7 @@ class Journal
         "If I had one thing I could do over today, what would it be?"};
     public Random randomGenerator = new Random();
     
-    public void Write()
+    public void write()
     {
         int num = randomGenerator.Next(1, question_list.Count());
         Console.Write($"{question_list[num]}");
@@ -28,10 +28,10 @@ class Journal
         question_list.Remove(question_list[num]);
     } 
 
-    public void display(List<WrittenResponse> writing_responses)
+    public void Display()
     {
         int i;
-        for(i = 0; i < writing_responses.Count(); i++){
+        for(i = 0; i < written_response.Count(); i++){
             Console.WriteLine($"{i+1}. {written_response[i].question}");
             Console.WriteLine($"{written_response[i].write}");
             Console.WriteLine($"{written_response[i].date}");
