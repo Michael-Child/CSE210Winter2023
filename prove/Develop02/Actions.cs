@@ -56,11 +56,13 @@ class Journal
 
         using (StreamWriter outputFile = new StreamWriter(fileName))
         {
+            int i = 1;
             int n;
             for(n = 0; n < written_response.Count(); n++)
-                outputFile.WriteLine($"{n+1}. {written_response[n].question}");
+                outputFile.WriteLine($"{i}. {written_response[n].question}");
                 outputFile.WriteLine($" {written_response[n].write}");
                 outputFile.WriteLine($" {written_response[n].date}");
+                i++;
         }
     }
 }
