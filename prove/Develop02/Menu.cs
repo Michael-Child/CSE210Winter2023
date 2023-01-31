@@ -20,17 +20,17 @@ class Menu
                 journal.Display();
             }
             else if(response == 3){ //Call Load Class Method
-                Console.Write("What is the file name?");
+                Console.WriteLine("What is the file name?");
                 string loadName = Console.ReadLine() ?? "";
                 journal.load(loadName);
             }
             else if(response == 4){ //Call Save Class Method
-                Console.Write("What is the file name?");
+                Console.WriteLine("What is the file name?");
                 string saveName = Console.ReadLine() ?? "";
                 journal.save(saveName);
             }
             else if(response == 5){ //Quits loop with thank you message
-                Console.Write("Thank you for playing!");
+                Console.WriteLine("Thank you for playing!");
             }
         }
     }

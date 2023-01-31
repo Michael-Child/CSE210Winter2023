@@ -16,7 +16,7 @@ class Journal
     public void write()
     {
         int num = randomGenerator.Next(1, question_list.Count());
-        Console.Write($"{question_list[num]}");
+        Console.WriteLine($"{question_list[num]}");
         string response = Console.ReadLine() ?? "";
 
         DateTime theCurrentTime = DateTime.Now;
