@@ -2,39 +2,31 @@ using System;
 
 class Program
 {
-    Account account = new Account();
     static void Main(string[] args)
     {
-        Console.WriteLine("Hello Learning03 World!");
+        Fraction fraction = new Fraction(0, 0);
+        fraction.SetTop(1);
+        fraction.SetBottom(1);
+        display(fraction);
         
-        int cont = 1;
-        while(cont == 1){
-            Console.WriteLine("1. Desposit");
-            Console.WriteLine("2. Withdraw");
-            Console.WriteLine("3. View Account Balance");
-            Console.WriteLine("4. Quit");
-            string userInput = Console.ReadLine() ?? "";
-            int input = int.Parse(userInput);
+        fraction.SetTop(5);
+        fraction.SetBottom(1);
+        display(fraction);
+        
+        Fraction fraction2 = new Fraction(0, 0);
+        fraction2.SetTop(3);
+        fraction2.SetBottom(4);
+        display(fraction2);
 
-            if(input == 1){
-                Console.WriteLine("4. Quit");
-                string userInput = Console.ReadLine() ?? "";
-                int Desposit = int.Parse(userInput);
-                account.Deposit(Desposit);
-            }
-            else if(input == 2){
-                Console.WriteLine("4. Quit");
-                string userInput = Console.ReadLine() ?? "";
-                int Withdraw = int.Parse(userInput);
-                account.Withdraw(Withdraw);
-            }
-            else if(input == 3){
-                Console.Write($"{account.GetBalance()}");
-            }
-
-        }
+        fraction2.SetTop(1);
+        fraction2.SetBottom(3);
+        display(fraction2);
     }
 
-
+    static void display(Fraction fraction){
+        Console.WriteLine($"1. Fraction: {fraction.GetFractionString(fraction)}");
+        Console.WriteLine($"2. Decimal: {fraction.GetDecimalValue(fraction)}");
+        Console.WriteLine("");
+    }
       
 }
