@@ -10,7 +10,12 @@ class Journal
         "What was the best part of my day?",
         "How did I see the hand of the Lord in my life today?",
         "What was the strongest emotion I felt today?",
-        "If I had one thing I could do over today, what would it be?"};
+        "If I had one thing I could do over today, what would it be?",
+        "What is something you admired others did today?",
+        "What scripture did I learn from today?",
+        "Which class did you enjoy going to today?",
+        "What is something you can improve on?",
+        "What is something you can do for your wife tomorrow?"};
     public Random randomGenerator = new Random();
     
     public void write()
