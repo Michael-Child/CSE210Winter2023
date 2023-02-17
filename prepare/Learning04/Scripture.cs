@@ -50,9 +50,10 @@ public class Scripture{
 
 //Words Verse Functions:
     public List<Word> GetWords(){
-        if(_words.GetIfHidden() == true){
-            _words = string('_', _words.Count());
-        }
+        //need for loop
+        // if(_words.GetIfHidden() == true){
+        //     _words = string('_', _words.Count());
+        // }
         return _words;
     }
     public void SetWords(List<Word> words){

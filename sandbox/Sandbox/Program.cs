@@ -1,24 +1,35 @@
 using System;
 
 class Program {
+
     static void Main(string[] args) {
+        var p = new Person();
+        var s = new Student();
+
+        Console.WriteLine(p.GetName());
+        Console.WriteLine(s.GetName());
+    }
+
+
+// For IntegerDivision Class
+    // static void Main(string[] args) {
         
-        var divider =  new IntegerDivision();
-        divider.Setlhs(10);
-        divider.Setrhs(1);
-        divider.DisplayResult();
+    //     var divider =  new IntegerDivision();
+    //     divider.Setlhs(10);
+    //     divider.Setrhs(1);
+    //     divider.DisplayResult();
 
-        divider.Setlhs(0);
-        divider.Setrhs(100);
-        divider.DisplayResult();
+    //     divider.Setlhs(0);
+    //     divider.Setrhs(100);
+    //     divider.DisplayResult();
 
-        divider.Setlhs(5);
-        divider.Setrhs(0);
-        divider.DisplayResult();
+    //     divider.Setlhs(5);
+    //     divider.Setrhs(0);
+    //     divider.DisplayResult();
 
-        divider.Setlhs(25);
-        divider.Setrhs(5);
-        divider.DisplayResult();
+    //     divider.Setlhs(25);
+    //     divider.Setrhs(5);
+    //     divider.DisplayResult();
 
         // divider.lhs = 10;
         // divider.rhs = 1;
@@ -35,6 +46,16 @@ class Program {
         // divider.lhs = 25;
         // divider.rhs = 5;
         // divider.DisplayResult();
+    // }
+}
+
+class Student: Person{
+
+}
+
+class Person{
+    public string GetName(){
+        return "Layne";
     }
 }
 

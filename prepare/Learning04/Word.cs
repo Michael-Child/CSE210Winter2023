@@ -15,12 +15,7 @@ public class Word{
 
 //Checks if word is hidden
     public bool GetIfHidden(){
-        if(_hidden == true){
-            return _hidden;
-        }
-        else{
-            return _hidden;
-        }
+        return _hidden;
     }
 
 }
