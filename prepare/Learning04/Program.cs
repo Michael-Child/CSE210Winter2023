@@ -1,26 +1,55 @@
 using System;
 
-class Program
-{
+class Program{
     static void Main(string[] args)
     {
-        Scripture scripture = new Scripture("Proverbs", 3, 5, 6, "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.");
-        display(scripture);
-        Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
-        string done = Console.ReadLine() ?? "";
+        Assignment a1 = new Assignment("Michael Child", "Math");
+        Console.WriteLine(a1.GetSummary());
+        MathAssignment a2 = new MathAssignment("Jimmy Nutron", "Nucluer Math", "7.3", "1-9");
+        Console.WriteLine(a2.GetSummary());
+        Console.WriteLine(a2.GetHomeworkList());
+        WritingAssignment a3 = new WritingAssignment("One Punch", "The Secret to Ultimate Power", "100 Push Ups & Sit Ups");
+        Console.WriteLine(a3.GetSummary());
+        Console.WriteLine(a3.GetWritingInformation());
+    }
+}
 
-        while(done !=  "quit"){
-            scripture.randomized();
-            
-            display(scripture);
-            Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
-            done = Console.ReadLine() ?? "";
-        }
+class Assignment{
+    protected string _student;
+    protected string _topic;
 
+    public Assignment(string student, string topic){
+        _student = student;
+        _topic = topic;
     }
 
-    static void display(Scripture scripture){
-        Console.WriteLine($"{scripture.GetAuthor()} {scripture.GetChapter()}: {scripture.GetStartVerse()} - {scripture.GetEndVerse()} {scripture.GetWords()}");
+    public string GetSummary(){
+        return $"{_student} - {_topic}";
     }
-      
+}
+
+class MathAssignment: Assignment{
+    private string _textbookSection;
+    private string _problems;
+
+    public MathAssignment(string student, string topic, string textbookSection, string problems):  base(student, topic){
+        _textbookSection = textbookSection;
+        _problems = problems;
+    }
+
+    public string GetHomeworkList(){
+        return $"{_textbookSection} Problems:  {_problems}";
+    }
+}
+
+class WritingAssignment: Assignment{
+    private string _title;
+
+    public WritingAssignment(string student, string topic, string title): base(student, topic){
+        _title = title;
+    }
+
+    public string GetWritingInformation(){
+        return $"{_title}";
+    }
 }
