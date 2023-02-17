@@ -2,10 +2,12 @@ using System;
 
 class Program
 {
+    static private bool swap = false;
     static void Main(string[] args)
     {
         Scripture scripture = new Scripture("Proverbs", 3, 5, 6, "Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.");
         display(scripture);
+        swap = true;
         Console.WriteLine("Press enter to continue or type 'quit' to finish: ");
         string done = Console.ReadLine() ?? "";
 
@@ -20,7 +22,13 @@ class Program
     }
 
     static void display(Scripture scripture){
-        Console.WriteLine($"{scripture.GetAuthor()} {scripture.GetChapter()}: {scripture.GetStartVerse()} - {scripture.GetEndVerse()} {scripture.GetWords()}");
+        if(swap == false){
+            Console.Clear();
+            Console.WriteLine($"{scripture.GetAuthor()} {scripture.GetChapter()}: {scripture.GetStartVerse()} - {scripture.GetEndVerse()} {scripture.GetWords()}");
+        }
+        else{
+            Console.WriteLine($"{scripture.GetAuthor()} {scripture.GetChapter()}: {scripture.GetStartVerse()} - {scripture.GetEndVerse()} {scripture.DisplayReplacedWords()}");
+        }
     }
       
 }

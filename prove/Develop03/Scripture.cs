@@ -48,25 +48,60 @@ public class Scripture{
         _endVerse = endVerse;
     }
 
+// public List<string> GetWords(){
+//     List<string> WordList = new List<string>();
+//     foreach(Word word in _words){
+//         WordList.Add(word.GetWord());
+//     }
+//     return WordList;
+// }
+// public List<string> GetWords(){
+//     List<string> verse = new List<string>();
+//     for(int i = 0; i < _words.Count(); i++){
+//         verse.Add(_words[i].GetWord() + " ");
+//     }
+//     return verse;
+// }
+
 //Words Verse Functions:
     public List<Word> GetWords(){
-        //need for loop
-        // if(_words.GetIfHidden() == true){
-        //     _words = string('_', _words.Count());
-        // }
         return _words;
     }
+
     public void SetWords(List<Word> words){
         _words = words;
+    }
+
+//Replaces a word inside words with "_____"
+    public List<Word> ReplacedWords(){
+        for(int i = 0; i < _words.Count(); i++){
+            if(_words[i].GetIfHidden() == true){
+                string replacement = new string('_', _words[i].GetWord().Count());
+                _words[i].SetWord(replacement);
+            }
+        }
+        return this._words;
+    }
+
+    public List<string> DisplayReplacedWords(){
+        List<string> verse = new List<string>();
+        for(int i = 0; i < _words.Count(); i++){
+            if(_words[i].GetIfHidden() == true){
+                string replacement = new string('_', _words[i].GetWord().Count());
+                _words[i].SetWord(replacement);
+            }
+            verse.Add(_words[i].GetWord() + " ");
+        }
+        return verse;
     }
 
 //Randomizes the words to be later blank ("____")
     public void randomized(){
         for(int i = 0; i < 3; i++){
-            Console.Write(GetWords().Count());
-            num = randomGenerator.Next(0, GetWords().Count());
-            GetWords()[num].SetToHidden();
+            num = randomGenerator.Next(0, _words.Count());
+            _words[num].SetToHidden();
+            // All GetWords() are replaced with _words
         }
-    }
 
+    }
 }
