@@ -27,8 +27,8 @@ class ListingActivity: Activity{
         Console.WriteLine("List as many responses you can to the following promt:");
         Console.Write(" --- ");
         SetStartMessage(_StartMessageList[Random(_StartMessageList.Count())]);
-        Console.WriteLine(GetStartMessage());
-        Console.Write(" --- ");
+        Console.Write(GetStartMessage());
+        Console.WriteLine(" --- ");
         Console.WriteLine("You may begin in:");
         for(int a = 0; a < 5; a++){
             Console.Write(a);

@@ -62,11 +62,13 @@ class Activity{
 
     public void GetReady(){
         Console.WriteLine("Get ready...");
-        for(int a = 0; a < 6; a++){
+        for(int a = 0; a < 3; a++){
                 Console.Write("+");
                 Thread.Sleep(500);
                 Console.Write("\b \b");
                 Console.Write("-");
+                Thread.Sleep(500);
+                Console.Write("\b \b");
         }
     }
 

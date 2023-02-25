@@ -19,8 +19,9 @@ class Program{
             else if(num == 3){
                 L.List();
             }
+            else if(num == 4){}
             else{
-                Console.WriteLine("Menu Options:");
+                Console.WriteLine("Please enter a valid number.");
             }
         }
     }

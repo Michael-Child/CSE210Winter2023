@@ -36,8 +36,8 @@ class ReflectingActivity: Activity{
 
         SetStartMessage(_StartMessageList[Random(_StartMessageList.Count())]);
         Console.Write(" --- ");
-        Console.WriteLine(GetStartMessage());
-        Console.Write(" --- ");
+        Console.Write(GetStartMessage());
+        Console.WriteLine(" --- ");
 
         Console.WriteLine("When you have something in mind. press enter to continue.");
         Thread.Sleep(5000);
