@@ -66,7 +66,7 @@ class Activity{
                 Console.Write("+");
                 Thread.Sleep(500);
                 Console.Write("\b \b");
-                Console.Write("-");
+                Console.Write("x");
                 Thread.Sleep(500);
                 Console.Write("\b \b");
         }

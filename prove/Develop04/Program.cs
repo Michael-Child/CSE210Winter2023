@@ -6,6 +6,7 @@ class Program{
         BreathingActivity B = new BreathingActivity();
         ReflectingActivity R = new ReflectingActivity();
         ListingActivity L = new ListingActivity();
+        L.GetReady();
         while(num != 4){
             menu();
             string userInput = Console.ReadLine() ?? "";

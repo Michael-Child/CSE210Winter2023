@@ -3,7 +3,7 @@ using System;
 class BreathingActivity: Activity{
 
     public BreathingActivity(): 
-    base("Breathing Activty",
+    base("Breathing Activity",
     "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.",
     "How long, in seconds, would you like for your session?",
     "Well Done! You have completed the breathing activty.",
