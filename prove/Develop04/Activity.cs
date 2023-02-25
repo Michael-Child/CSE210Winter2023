@@ -82,4 +82,12 @@ class Activity{
             Console.Write("\b \b");
         }
     }
+
+    public void CountDown(int num){
+        for(int a = 0; a < num; a++){
+            Console.Write(num-a);
+            Thread.Sleep(1000);
+            Console.Write("\b \b");
+        }
+    }
 }

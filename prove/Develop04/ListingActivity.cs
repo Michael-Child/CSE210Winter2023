@@ -30,11 +30,7 @@ class ListingActivity: Activity{
         Console.Write(GetStartMessage());
         Console.WriteLine(" --- ");
         Console.WriteLine("You may begin in:");
-        for(int a = 0; a < 5; a++){
-            Console.Write(a);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
+        CountDown(5);
 
         DateTime startTime = DateTime.Now;
         DateTime futureTime = startTime.AddSeconds(GetDuration()/2);

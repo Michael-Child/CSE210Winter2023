@@ -52,25 +52,18 @@ class ReflectingActivity: Activity{
         }
 
         Console.WriteLine("Now ponder on each of the following questions as they related to this experience.");
-        for(int a = 0; a < 5; a++){
-            Console.Write(a);
-            Thread.Sleep(1000);
-            Console.Write("\b \b");
-        }
+        CountDown(5);
         startTime = DateTime.Now;
         futureTime = startTime.AddSeconds(GetDuration()/2);
         currentTime = DateTime.Now;
-        int i = 0;
         while(currentTime < futureTime){
+            int i = Random(_EndMessageList.Count());
             Console.WriteLine(_EndMessageList[i]);
             userInput = Console.ReadLine() ?? "";
             _SecondUI.Add(userInput);
             currentTime = DateTime.Now;
-            i++;
         }
         Console.WriteLine(GetEndMessage());
         Console.WriteLine($"You have completed another {GetDuration()} seconds of the Reflection Activity.");
     }
-
-      
 }
