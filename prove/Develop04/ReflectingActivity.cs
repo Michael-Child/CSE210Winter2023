@@ -66,6 +66,7 @@ class ReflectingActivity: Activity{
             userInput = Console.ReadLine() ?? "";
             _SecondUI.Add(userInput);
             currentTime = DateTime.Now;
+            i++;
         }
         Console.WriteLine(GetEndMessage());
         Console.WriteLine($"You have completed another {GetDuration()} seconds of the Reflection Activity.");
