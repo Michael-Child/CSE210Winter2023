@@ -18,8 +18,8 @@ class Program{
         shape.Add(rectangle);
 
         foreach(var s in shape){
-            s.GetColor();
-            s.GetArea();
+            Console.WriteLine(s.GetColor());
+            Console.WriteLine(s.GetArea());
         }
     }
 }
