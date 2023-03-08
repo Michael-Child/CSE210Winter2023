@@ -31,7 +31,7 @@ class ChecklistGoal: Goal{
         return this._completion;
     }public void SetCompletion(int completion){
         _completion = completion;
-    }public void SetChecklistGoal(){
+    }public override void SetGoal(){
         SetGoal();
         Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
         string UI = Console.ReadLine() ?? "";
