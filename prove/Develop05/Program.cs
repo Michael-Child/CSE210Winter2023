@@ -33,19 +33,21 @@ class Program
                     Console.WriteLine("Please enter a valid number. Starting over at the menu. ");
                 }
             }else if(UI == 2){
-                int i = 1;
                 foreach(var g in GoalList){
-                    Console.WriteLine($"{i}. {g.DisplayX} {g.GetName()} ({g.GetDescription()})");
-                    i++;
+                    g.list();
                 }
             }else if(UI == 3){
                 Console.WriteLine("What name would you like to save the file? ");
                 response = Console.ReadLine() ?? "";
-                GoalList.save(response);
+                foreach(var g in GoalList){
+                    g.save(response);
+                }
             }else if(UI == 4){
                 Console.WriteLine("What's the name of the file? ");
                 response = Console.ReadLine() ?? "";
-                GoalList.load(response);
+                foreach(var g in GoalList){
+                    g.load(response);
+                }
             }else if(UI == 5){
                 int i = 1;
                 foreach(var g in GoalList){
@@ -54,7 +56,7 @@ class Program
                 }
                 Console.WriteLine("Which goal did you accomplish? ");
                 response = Console.ReadLine() ?? "";
-                int num = int.Parse(response);
+                int num = int.Parse(response) - 1;
                 totalpoint = GoalList[num].GetPoints();
                 GoalList[num].SetRecord(true);
                 Console.WriteLine($"Congratulations! You have earned {GoalList[num].GetPoints()} points! ");

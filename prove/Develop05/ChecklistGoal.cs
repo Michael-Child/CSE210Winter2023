@@ -43,4 +43,11 @@ class ChecklistGoal: Goal{
         point = int.Parse(UI);
         SetBonus(point);
     }
+    public override void save(string fileName){
+        using (StreamWriter outputFile = new StreamWriter(fileName)){
+            outputFile.WriteLine($"{GetTitle}: {DisplayX} {GetName} {GetDescription} {GetPoints} {GetRecord} {GetBonus} {GetCompletion} {GetCompletionGoal} ");
+    }}
+    public virtual void list(){
+        Console.WriteLine($"{DisplayX} {GetName} ({GetDescription}) --- Currently completed: {GetCompletion}/{GetCompletionGoal}");
+    }
 }
