@@ -47,7 +47,7 @@ class ChecklistGoal: Goal{
         using (StreamWriter outputFile = new StreamWriter(fileName)){
             outputFile.WriteLine($"{GetTitle}: {DisplayX} {GetName} {GetDescription} {GetPoints} {GetRecord} {GetBonus} {GetCompletion} {GetCompletionGoal} ");
     }}
-    public virtual void list(){
+    public override void list(){
         Console.WriteLine($"{DisplayX} {GetName} ({GetDescription}) --- Currently completed: {GetCompletion}/{GetCompletionGoal}");
     }
 }
