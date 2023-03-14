@@ -17,27 +17,27 @@ class Goal
         this._description=description;
         this._points=points;
         this._record=record;
-    }public string GetTitle(){
+    }public virtual string GetTitle(){
         return this._title;
-    }public void SetTitle(string title){
+    }public virtual void SetTitle(string title){
         _title = title;
-    }public string GetName(){
+    }public virtual string GetName(){
         return this._name;
-    }public void SetName(string name){
+    }public virtual void SetName(string name){
         _name = name;
-    }public string GetDescription(){
+    }public virtual string GetDescription(){
         return this._description;
-    }public void SetDescription(string description){
+    }public virtual void SetDescription(string description){
         _description = description;
-    }public int GetPoints(){
+    }public virtual int GetPoints(){
         return this._points;
-    }public void SetPoints(int points){
+    }public virtual void SetPoints(int points){
         _points = points;
     }public virtual bool GetRecord(){
         return this._record;
-    }public void SetRecord(bool record){
+    }public virtual void SetRecord(bool record){
         _record = record;
-    }public void DisplayX(){
+    }public virtual void DisplayX(){
         if(_record == true){
             Console.Write("[X]");
         }
@@ -59,7 +59,8 @@ class Goal
         SetPoints(point);
     }
     public virtual void list(){
-            Console.WriteLine($"{DisplayX} {GetName()} ({GetDescription()})");
+        DisplayX();
+        Console.WriteLine($" {GetName()} ({GetDescription()})");
     }
     public virtual void load(string fileName){
         Console.WriteLine("The goals are: ");
@@ -71,6 +72,6 @@ class Goal
     }}
     public virtual void save(string fileName){
         using (StreamWriter outputFile = new StreamWriter(fileName)){
-            outputFile.WriteLine($"{GetTitle}: {GetName} {GetDescription} {GetPoints} {GetRecord}");
+            outputFile.WriteLine($"{GetTitle()}: {GetName()} {GetDescription()} {GetPoints()} {GetRecord()}");
     }}
 }

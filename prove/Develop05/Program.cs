@@ -2,7 +2,8 @@ using System;
 
 class Program
 {
-    static int totalpoint = 0;
+    static Points totalpoint = new Points();
+
     static void Main(string[] args)
     {
         int UI = 0;
@@ -10,12 +11,17 @@ class Program
         var s = new SimpleGoal();
         var e = new EternalGoal();
         var c = new ChecklistGoal(0,0,0);
+        int i = 0;
 
         while(UI != 6){
             display();
             string response = Console.ReadLine() ?? "";
             UI = int.Parse(response);
             if(UI == 1){
+                Console.WriteLine("Which goal would you like to create?");
+                Console.WriteLine("1. Simple Goal");
+                Console.WriteLine("2. Eternal Goal");
+                Console.WriteLine("3. Checklist Goal");
                 response = Console.ReadLine() ?? "";
                 UI = int.Parse(response);
                 if(UI == 1){
@@ -33,12 +39,16 @@ class Program
                     Console.WriteLine("Please enter a valid number. Starting over at the menu. ");
                 }
             }else if(UI == 2){
+                i = 0;
                 foreach(var g in GoalList){
+                    i++;
+                    Console.Write($"{i}. ");
                     g.list();
                 }
             }else if(UI == 3){
                 Console.WriteLine("What name would you like to save the file? ");
                 response = Console.ReadLine() ?? "";
+                totalpoint.save(response);
                 foreach(var g in GoalList){
                     g.save(response);
                 }
@@ -49,15 +59,16 @@ class Program
                     g.load(response);
                 }
             }else if(UI == 5){
-                int i = 1;
+                Console.WriteLine("The goals are: ");
+                i = 0;
                 foreach(var g in GoalList){
-                    Console.WriteLine($"{i}. {g.DisplayX} {g.GetName()} ({g.GetDescription()})");
                     i++;
+                    Console.WriteLine($"{i}. {g.GetName()}");
                 }
                 Console.WriteLine("Which goal did you accomplish? ");
                 response = Console.ReadLine() ?? "";
                 int num = int.Parse(response) - 1;
-                totalpoint = GoalList[num].GetPoints();
+                totalpoint.SetPoints(GoalList[num].GetPoints());
                 GoalList[num].SetRecord(true);
                 Console.WriteLine($"Congratulations! You have earned {GoalList[num].GetPoints()} points! ");
             }else if(UI == 6){
@@ -68,7 +79,7 @@ class Program
     }
 
     static void display(){
-        Console.WriteLine($"You have {totalpoint} points.");
+        Console.WriteLine($"You have {totalpoint.GetPoints()} points.");
         Console.WriteLine("");
         Console.WriteLine("Menu Options:");
         Console.WriteLine("1. Create New Goal");

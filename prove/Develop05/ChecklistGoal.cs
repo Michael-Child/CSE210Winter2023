@@ -32,10 +32,22 @@ class ChecklistGoal: Goal{
     }public void SetCompletion(int completion){
         _completion = completion;
     }public override void SetGoal(){
-        SetGoal();
-        Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
+        Console.WriteLine("What is the name of your goal? ");
         string UI = Console.ReadLine() ?? "";
+        SetName(UI);
+
+        Console.WriteLine("What is a short description of it? ");
+        UI = Console.ReadLine() ?? "";
+        SetDescription(UI);
+
+        Console.WriteLine("What is the amount of points associated with this goal? ");
+        UI = Console.ReadLine() ?? "";
         int point = int.Parse(UI);
+        SetPoints(point);
+
+        Console.WriteLine("How many times does this goal need to be accomplished for a bonus? ");
+        UI = Console.ReadLine() ?? "";
+        point = int.Parse(UI);
         SetCompletionGoal(point);
 
         Console.WriteLine("What is the bonus for accomplishing it that many times? ");
@@ -45,9 +57,10 @@ class ChecklistGoal: Goal{
     }
     public override void save(string fileName){
         using (StreamWriter outputFile = new StreamWriter(fileName)){
-            outputFile.WriteLine($"{GetTitle}: {DisplayX} {GetName} {GetDescription} {GetPoints} {GetRecord} {GetBonus} {GetCompletion} {GetCompletionGoal} ");
+            outputFile.WriteLine($"{GetTitle()}: {GetName()} {GetDescription()} {GetPoints()} {GetRecord()} {GetBonus()} {GetCompletion()} {GetCompletionGoal()} ");
     }}
     public override void list(){
-        Console.WriteLine($"{DisplayX} {GetName} ({GetDescription}) --- Currently completed: {GetCompletion}/{GetCompletionGoal}");
+        DisplayX();
+        Console.WriteLine($" {GetName()} ({GetDescription()}) --- Currently completed: {GetCompletion()}/{GetCompletionGoal()}");
     }
 }

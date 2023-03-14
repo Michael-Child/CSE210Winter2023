@@ -14,5 +14,5 @@ class EternalGoal: Goal{
 
     public override void save(string fileName){
         using (StreamWriter outputFile = new StreamWriter(fileName)){
-            outputFile.WriteLine($"{GetTitle}: {GetName} {GetDescription} {GetPoints}");
+            outputFile.WriteLine($"{GetTitle()}: {GetName()} {GetDescription()} {GetPoints()}");
     }}}
