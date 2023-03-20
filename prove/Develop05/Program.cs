@@ -71,6 +71,7 @@ class Program
                 totalpoint.SetPoints(GoalList[num].GetPoints());
                 GoalList[num].SetRecord(true);
                 Console.WriteLine($"Congratulations! You have earned {GoalList[num].GetPoints()} points! ");
+
             }else if(UI == 6){
             }else{
                 Console.WriteLine("Please enter a valid number.");

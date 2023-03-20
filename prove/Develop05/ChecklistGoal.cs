@@ -14,8 +14,7 @@ class ChecklistGoal: Goal{
         this._completionGoal=completionGoal;
         this._completion=completion;
     }public override bool GetRecord(){
-        if(_completionGoal <= _completion){
-            SetRecord(true);
+        if(_completionGoal == _completion){
             return true;
         }
         else{return false;}

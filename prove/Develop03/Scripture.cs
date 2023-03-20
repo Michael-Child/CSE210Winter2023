@@ -6,6 +6,7 @@ public class Scripture{
     private int _chapter = 0;
     private int _startVerse = 0;
     private int _endVerse = 0;
+    private List<string> _list = new List<string>();
     private List<Word> _words = new List<Word>();
     private Random randomGenerator = new Random();
     private int num = 0;
@@ -65,7 +66,7 @@ public class Scripture{
 
 //Words Verse Functions:
     public List<Word> GetWords(){
-        return _words;
+        return this._words;
     }
 
     public void SetWords(List<Word> words){
@@ -75,7 +76,7 @@ public class Scripture{
 //Replaces a word inside words with "_____"
     public List<Word> ReplacedWords(){
         for(int i = 0; i < _words.Count(); i++){
-            if(_words[i].GetIfHidden() == true){
+            if(_words[i].GetHidden() == true){
                 string replacement = new string('_', _words[i].GetWord().Count());
                 _words[i].SetWord(replacement);
             }
@@ -86,7 +87,7 @@ public class Scripture{
     public List<string> DisplayReplacedWords(){
         List<string> verse = new List<string>();
         for(int i = 0; i < _words.Count(); i++){
-            if(_words[i].GetIfHidden() == true){
+            if(_words[i].GetHidden() == true){
                 string replacement = new string('_', _words[i].GetWord().Count());
                 _words[i].SetWord(replacement);
             }
@@ -99,7 +100,7 @@ public class Scripture{
     public void randomized(){
         for(int i = 0; i < 3; i++){
             num = randomGenerator.Next(0, _words.Count());
-            _words[num].SetToHidden();
+            _words[num].SetHidden(true);
             // All GetWords() are replaced with _words
         }
 
