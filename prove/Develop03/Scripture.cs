@@ -15,7 +15,12 @@ public class Scripture{
         this._chapter = _chapter;
         this._startVerse = _startVerse;
         this._endVerse = _endVerse;
-        _words.Split();
+
+        string[] subs = _words.Split(' ');
+        foreach(var i in subs){
+            Word _word = new Word(i);
+            this._words.Add(_word);
+        }        
     }
 
 //Author Functions:
@@ -56,18 +61,19 @@ public class Scripture{
 //     }
 //     return WordList;
 // }
-// public List<string> GetWords(){
-//     List<string> verse = new List<string>();
-//     for(int i = 0; i < _words.Count(); i++){
-//         verse.Add(_words[i].GetWord() + " ");
-//     }
-//     return verse;
-// }
 
-//Words Verse Functions:
-    public List<Word> GetWords(){
-        return this._words;
+    public string GetWords(){
+        string verse = "";
+        for(int i = 0; i < _words.Count(); i++){
+            verse += _words[i].GetWord() + " ";
+        }
+        return verse;
     }
+
+// //Words Verse Functions:
+//     public List<Word> GetWords(){
+//         return this._words;
+//     }
 
     public void SetWords(List<Word> words){
         _words = words;
@@ -84,14 +90,14 @@ public class Scripture{
         return this._words;
     }
 
-    public List<string> DisplayReplacedWords(){
-        List<string> verse = new List<string>();
+    public string DisplayReplacedWords(){
+        string verse = "";
         for(int i = 0; i < _words.Count(); i++){
             if(_words[i].GetHidden() == true){
                 string replacement = new string('_', _words[i].GetWord().Count());
                 _words[i].SetWord(replacement);
             }
-            verse.Add(_words[i].GetWord() + " ");
+            verse += _words[i].GetWord() + " ";
         }
         return verse;
     }

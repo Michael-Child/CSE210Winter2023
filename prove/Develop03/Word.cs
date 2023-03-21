@@ -4,9 +4,9 @@ public class Word{
 
     private bool _hidden = false;
     private string _word;
-    // public Word(string _word){
-    //     this._word = _word;
-    // }
+    public Word(string _word){
+        this._word = _word;
+    }
 
     public void SetWord(string word){
         _word = word;
