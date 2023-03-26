@@ -68,8 +68,8 @@ class Program
                 Console.WriteLine("Which goal did you accomplish? ");
                 response = Console.ReadLine() ?? "";
                 int num = int.Parse(response) - 1;
-                totalpoint.SetPoints(GoalList[num].GetPoints());
                 GoalList[num].SetRecord(true);
+                totalpoint.SetPoints(GoalList[num].GetPoints());
                 Console.WriteLine($"Congratulations! You have earned {GoalList[num].GetPoints()} points! ");
 
             }else if(UI == 6){

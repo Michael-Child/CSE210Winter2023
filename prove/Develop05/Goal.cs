@@ -38,7 +38,7 @@ class Goal
     }public virtual void SetRecord(bool record){
         _record = record;
     }public virtual void DisplayX(){
-        if(_record == true){
+        if(GetRecord() == true){
             Console.Write("[X]");
         }
         else{

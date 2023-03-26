@@ -4,6 +4,7 @@ class ChecklistGoal: Goal{
     private int _completionGoal;
     private int _completion;
     private int _bonus;
+    private int _points;
     public ChecklistGoal(int bonus, int completionGoal, int completion): 
     base("Checklist Goal",
     "Goal name",
@@ -13,11 +14,25 @@ class ChecklistGoal: Goal{
         this._bonus=bonus;
         this._completionGoal=completionGoal;
         this._completion=completion;
-    }public override bool GetRecord(){
-        if(_completionGoal == _completion){
-            return true;
+    }
+    public override bool GetRecord(){
+        if(GetCompletionGoal() <= GetCompletion()){
+            if(GetCompletionGoal() == GetCompletion()){
+                SetPoints(GetPoints() + GetBonus());
+                return true;
+            }else if((GetCompletionGoal()+1) == GetCompletion()){
+                SetPoints(GetPoints() - GetBonus());
+                return true;
+            }else{
+                return true;
+            }
         }
         else{return false;}
+    }public override void SetRecord(bool record){
+        if(record == true){
+            SetCompletion();
+        }
+        GetRecord();
     }public int GetBonus(){
         return this._bonus;
     }public void SetBonus(int bonus){
@@ -28,8 +43,8 @@ class ChecklistGoal: Goal{
         _completionGoal = completionGoal;
     }public int GetCompletion(){
         return this._completion;
-    }public void SetCompletion(int completion){
-        _completion = completion;
+    }public void SetCompletion(){
+        _completion += 1;
     }public override void SetGoal(){
         Console.WriteLine("What is the name of your goal? ");
         string UI = Console.ReadLine() ?? "";
