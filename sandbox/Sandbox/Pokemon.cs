@@ -55,7 +55,11 @@ class Pokemon
         _moves = moves;
     }public virtual Move GetMove(int move){
         return this._moves[move];
-    }public virtual void TookDamage(int dmg){
-        SetHP(GetHP() - ((GetDefense()/100) * dmg));
+    }public virtual void TookDamage(double dmg){
+        if(GetDefense() > 100){
+            SetHP(GetHP() - ((int)(dmg - (dmg/(GetDefense()-100)))));
+        }else{
+            SetHP(GetHP() - ((int)(dmg + (dmg/(100-GetDefense())))));
+        }
     }public virtual void DoThe4thMove(){}
 }

@@ -2,8 +2,8 @@ using System;
 
 class Program
 {
-    static Player One;
-    static Player Two;
+    static List<Pokemon> One = new List<Pokemon>{};
+    static List<Pokemon> Two = new List<Pokemon>{};
     static int Player_One_Points;
     static int Player_Two_Points;
     static Venusaur venusaur = new Venusaur();
@@ -32,14 +32,17 @@ class Program
 
     static void Main(string[] args){
         Console.WriteLine($"Welcome players to the arena!");
-        Console.WriteLine($"Here are the rules. The first and then second player will each select 3 Pokemon and battle until one is defeated!");
+        Console.WriteLine($"Here are the rules. The first and then second player will each select 3 Pokemon. When a pokemon is defeated the next pokemons of each player in line will battle!");
         Console.WriteLine($"First player please select your three pokemon:");
         playerSelection(One);
+        foreach(var i in One){
+            Console.WriteLine($"{i.GetName()}");
+        }
         Console.WriteLine($"Second player please select your three pokemon:");
         playerSelection(Two);
-        battle(); //First pokemon battle
-        battle(); //Second pokemon battle
-        battle(); //Third pokemon battle
+        battle(0); //First pokemon battle
+        battle(1); //Second pokemon battle
+        battle(2); //Third pokemon battle
         if(Player_One_Points > Player_Two_Points){
             Console.WriteLine($"Player one wins!");
         }else{
@@ -47,79 +50,79 @@ class Program
         }
     }
 
-    static void battle(){
+    static void battle(int PokemonOrder){
         Console.WriteLine($"Let the battle BEGIN!!!");
         //Needs to loop again
-        Console.WriteLine($"Players one pokemon {(One.GetPokemon(0)).GetName()} vs. Players two pokemon {(Two.GetPokemon(0)).GetName()}!");
-        if((One.GetPokemon(0)).GetSpeed() > (Two.GetPokemon(0)).GetSpeed()){
-            while(One.GetPokemon(0).GetHP() > 0 || Two.GetPokemon(0).GetHP() > 0){
-                attack(One, Two);
-                if(Two.GetPokemon(0).GetHP() > 0){
-                    attack(Two, One);
+        Console.WriteLine($"Players one pokemon {(One[PokemonOrder]).GetName()} vs. Players two pokemon {(Two[PokemonOrder]).GetName()}!");
+        if((One[PokemonOrder]).GetSpeed() > (Two[PokemonOrder]).GetSpeed()){
+            while(One[PokemonOrder].GetHP() > 0 || Two[PokemonOrder].GetHP() > 0){
+                attack(One, Two, PokemonOrder);
+                if(Two[PokemonOrder].GetHP() > 0){
+                    attack(Two, One, PokemonOrder);
         }}}else{
-            while(One.GetPokemon(0).GetHP() > 0 || Two.GetPokemon(0).GetHP() > 0){
-                attack(Two, One);
-                if(One.GetPokemon(0).GetHP() > 0){
-                    attack(One, Two);
+            while(One[PokemonOrder].GetHP() > 0 || Two[PokemonOrder].GetHP() > 0){
+                attack(Two, One, PokemonOrder);
+                if(One[PokemonOrder].GetHP() > 0){
+                    attack(One, Two, PokemonOrder);
         }}}
-        if(One.GetPokemon(0).GetHP() > 0){
-            Console.WriteLine($"Players one pokemon {(One.GetPokemon(0)).GetName()} was defeated.");
+        if(One[PokemonOrder].GetHP() > 0){
+            Console.WriteLine($"Players one pokemon {(One[PokemonOrder]).GetName()} was defeated.");
             Player_Two_Points++;
         }else{
-            Console.WriteLine($"Players one pokemon {(Two.GetPokemon(0)).GetName()} was defeated.");
+            Console.WriteLine($"Players one pokemon {(Two[PokemonOrder]).GetName()} was defeated.");
             Player_One_Points++;
         }
-        One.ReleasePokemon(One.GetPokemon(0));
-        Two.ReleasePokemon(Two.GetPokemon(0));
     }
 
-    static void attack(Player first, Player second){
+    static void attack(List<Pokemon> first, List<Pokemon> second, int PokemonOrder){
         string name = "";
         if(first == One){
             name = "one";
         }else{
             name = "two";
         }
-        Console.WriteLine($"Player {name} which pokemon move do you want {(first.GetPokemon(0)).GetName()} to use: ");
+        Console.WriteLine($"Player {name} which pokemon move do you want {(first[PokemonOrder]).GetName()} to use: ");
         int move = 0;
-        foreach(var i in (first.GetPokemon(0).GetMoves())){
+        foreach(var i in (first[PokemonOrder].GetMoves())){
             move++;
             Console.WriteLine($"{move}. {i.GetName()}");
         }
         string userInput = Console.ReadLine() ?? "";
         int selection = int.Parse(userInput);
         if(selection == 4){
-            (first.GetPokemon(0)).DoThe4thMove();
-            Console.WriteLine($"{(first.GetPokemon(0)).GetName()} uses {(first.GetPokemon(0).GetMove(selection-1)).GetName()} and increases their stats!");
+            (first[PokemonOrder]).DoThe4thMove();
+            Console.WriteLine($"{(first[PokemonOrder]).GetName()} uses {(first[PokemonOrder].GetMove(selection-1)).GetName()} and increases their stats!");
         }else{
-            second.GetPokemon(0).TookDamage((first.GetPokemon(0).GetAttackPower()/100)*(first.GetPokemon(0).GetMove(selection-1)).GetDamage());
-            Console.WriteLine($"{(first.GetPokemon(0)).GetName()} uses {(first.GetPokemon(0).GetMove(selection-1)).GetName()} on {(second.GetPokemon(0)).GetName()}.");
-            Console.WriteLine($"{(second.GetPokemon(0)).GetName()} took {second.GetPokemon(0).GetDefense()/100 * (first.GetPokemon(0).GetAttackPower()/100) * (first.GetPokemon(0).GetMove(selection-1)).GetDamage()} damage!");
+            if(first[PokemonOrder].GetAttackPower() > 100){
+                second[PokemonOrder].TookDamage(first[PokemonOrder].GetMove(selection).GetDamage() + (first[PokemonOrder].GetMove(selection).GetDamage()/(first[PokemonOrder].GetAttackPower() - 100)));
+            }else{
+                second[PokemonOrder].TookDamage(first[PokemonOrder].GetMove(selection).GetDamage() - (first[PokemonOrder].GetMove(selection).GetDamage()/(100 - first[PokemonOrder].GetAttackPower())));
+            }
+            Console.WriteLine($"{(first[PokemonOrder]).GetName()} uses {(first[PokemonOrder].GetMove(selection-1)).GetName()} on {(second[PokemonOrder]).GetName()}.");
+            Console.WriteLine($"{(second[PokemonOrder]).GetName()} took {(int)((second[PokemonOrder].GetHP() - (int)(((double)(second[PokemonOrder].GetDefense())/100) * (((double)(first[PokemonOrder].GetAttackPower())/100) * (double)(first[PokemonOrder].GetMove(selection-1)).GetDamage()))))} damage and has only has {(second[PokemonOrder]).GetHP()} HP left!");
     }}
 
-    static void playerSelection(Player name){
+    static void playerSelection(List<Pokemon> name){
         
-        List<Pokemon> temperary = new List<Pokemon>();
         List<Pokemon> temperaryList = PokemonSelection;
 
         for(int i = 0; i < 3; i++){
             int num = 0;
+            Console.WriteLine($"Pokemon Selection List: ");
             foreach(var o in temperaryList){
                 num++;
                 Console.WriteLine($"{num}. {o.GetName()}");
             }
-            Console.WriteLine($"");
             Console.WriteLine();
             Console.WriteLine($"Select your pokemon by entering their number: ");
 
             Console.Write($"{i+1}. ");
             string userInput = Console.ReadLine() ?? "";
             int selection = int.Parse(userInput);
-            temperary.Add(temperaryList[selection-1]);
+            name.Add(temperaryList[selection-1]);
             temperaryList.Remove(temperaryList[selection-1]);
             Console.WriteLine("___________________________________");
         }
-        name.SetPokemons(temperary);
     }
 }
 
