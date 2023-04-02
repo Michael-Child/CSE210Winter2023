@@ -61,5 +61,11 @@ class Pokemon
         }else{
             SetHP(GetHP() - ((int)(dmg + (dmg/(100-GetDefense())))));
         }
+    }public virtual int GetTookDamage(double dmg){
+        if(GetDefense() > 100){
+            return ((int)(dmg - (dmg/(GetDefense()-100))));
+        }else{
+            return ((int)(dmg + (dmg/(100-GetDefense()))));
+        }
     }public virtual void DoThe4thMove(){}
 }

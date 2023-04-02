@@ -27,7 +27,8 @@ class Program
         feraligatr,
         sceptile,
         blaziken,
-        swampert
+        swampert,
+        megaGyarados
     };
 
     static void Main(string[] args){
@@ -42,7 +43,9 @@ class Program
         playerSelection(Two);
         battle(0); //First pokemon battle
         battle(1); //Second pokemon battle
-        battle(2); //Third pokemon battle
+        battle(2); //Third pokemon battle\
+        Console.WriteLine();
+        Console.WriteLine($"FINAL RESULTS:");
         if(Player_One_Points > Player_Two_Points){
             Console.WriteLine($"Player one wins!");
         }else{
@@ -51,16 +54,17 @@ class Program
     }
 
     static void battle(int PokemonOrder){
+        Console.WriteLine();
         Console.WriteLine($"Let the battle BEGIN!!!");
         //Needs to loop again
         Console.WriteLine($"Players one pokemon {(One[PokemonOrder]).GetName()} vs. Players two pokemon {(Two[PokemonOrder]).GetName()}!");
         if((One[PokemonOrder]).GetSpeed() > (Two[PokemonOrder]).GetSpeed()){
-            while(One[PokemonOrder].GetHP() > 0 || Two[PokemonOrder].GetHP() > 0){
+            while(One[PokemonOrder].GetHP() > 0 && Two[PokemonOrder].GetHP() > 0){
                 attack(One, Two, PokemonOrder);
                 if(Two[PokemonOrder].GetHP() > 0){
                     attack(Two, One, PokemonOrder);
         }}}else{
-            while(One[PokemonOrder].GetHP() > 0 || Two[PokemonOrder].GetHP() > 0){
+            while(One[PokemonOrder].GetHP() > 0 && Two[PokemonOrder].GetHP() > 0){
                 attack(Two, One, PokemonOrder);
                 if(One[PokemonOrder].GetHP() > 0){
                     attack(One, Two, PokemonOrder);
@@ -87,19 +91,28 @@ class Program
             move++;
             Console.WriteLine($"{move}. {i.GetName()}");
         }
+
+        Console.WriteLine();
+        Console.Write($"Choose your pokemons next move: ");
         string userInput = Console.ReadLine() ?? "";
         int selection = int.Parse(userInput);
+        Console.WriteLine();
+
+        int dmg;
+
         if(selection == 4){
             (first[PokemonOrder]).DoThe4thMove();
             Console.WriteLine($"{(first[PokemonOrder]).GetName()} uses {(first[PokemonOrder].GetMove(selection-1)).GetName()} and increases their stats!");
         }else{
             if(first[PokemonOrder].GetAttackPower() > 100){
                 second[PokemonOrder].TookDamage(first[PokemonOrder].GetMove(selection).GetDamage() + (first[PokemonOrder].GetMove(selection).GetDamage()/(first[PokemonOrder].GetAttackPower() - 100)));
+                dmg = first[PokemonOrder].GetMove(selection).GetDamage() + (first[PokemonOrder].GetMove(selection).GetDamage()/(first[PokemonOrder].GetAttackPower() - 100));
             }else{
                 second[PokemonOrder].TookDamage(first[PokemonOrder].GetMove(selection).GetDamage() - (first[PokemonOrder].GetMove(selection).GetDamage()/(100 - first[PokemonOrder].GetAttackPower())));
+                dmg = first[PokemonOrder].GetMove(selection).GetDamage() - (first[PokemonOrder].GetMove(selection).GetDamage()/(100 - first[PokemonOrder].GetAttackPower()));
             }
             Console.WriteLine($"{(first[PokemonOrder]).GetName()} uses {(first[PokemonOrder].GetMove(selection-1)).GetName()} on {(second[PokemonOrder]).GetName()}.");
-            Console.WriteLine($"{(second[PokemonOrder]).GetName()} took {(int)((second[PokemonOrder].GetHP() - (int)(((double)(second[PokemonOrder].GetDefense())/100) * (((double)(first[PokemonOrder].GetAttackPower())/100) * (double)(first[PokemonOrder].GetMove(selection-1)).GetDamage()))))} damage and has only has {(second[PokemonOrder]).GetHP()} HP left!");
+            Console.WriteLine($"{(second[PokemonOrder]).GetName()} took {second[PokemonOrder].GetTookDamage(dmg)} damage and has only has {(second[PokemonOrder]).GetHP()} HP left!");
     }}
 
     static void playerSelection(List<Pokemon> name){
@@ -125,96 +138,3 @@ class Program
         }
     }
 }
-
-// using System;
-
-// class Program {
-
-//     static void Main(string[] args) {
-//         var p = new Person();
-//         var s = new Student();
-
-//         Console.WriteLine(p.GetName());
-//         Console.WriteLine(s.GetName());
-//     }
-
-
-// // For IntegerDivision Class
-//     // static void Main(string[] args) {
-        
-//     //     var divider =  new IntegerDivision();
-//     //     divider.Setlhs(10);
-//     //     divider.Setrhs(1);
-//     //     divider.DisplayResult();
-
-//     //     divider.Setlhs(0);
-//     //     divider.Setrhs(100);
-//     //     divider.DisplayResult();
-
-//     //     divider.Setlhs(5);
-//     //     divider.Setrhs(0);
-//     //     divider.DisplayResult();
-
-//     //     divider.Setlhs(25);
-//     //     divider.Setrhs(5);
-//     //     divider.DisplayResult();
-
-//         // divider.lhs = 10;
-//         // divider.rhs = 1;
-//         // divider.DisplayResult();
-
-//         // divider.lhs = 0;
-//         // divider.rhs = 100;
-//         // divider.DisplayResult();
-
-//         // divider.lhs = 5;
-//         // divider.rhs = 0;
-//         // divider.DisplayResult();
-
-//         // divider.lhs = 25;
-//         // divider.rhs = 5;
-//         // divider.DisplayResult();
-//     // }
-// }
-
-// class Student: Person{
-
-// }
-
-// class Person{
-//     public string GetName(){
-//         return "Layne";
-//     }
-// }
-
-// class IntegerDivision {
-//     private int _lhs = 1;
-//     private int _rhs = 1;
-
-//     public int Result() {
-//         return Getlhs() / Getrhs();
-//     }
-//     public int Getlhs(){
-//         return this._lhs;
-//     }
-//     public void Setlhs(int lhs){
-//         _lhs = lhs;
-//     }
-
-//     public int Getrhs(){
-//         return this._rhs;
-//     }
-//     public void Setrhs(int rhs){
-//         if(rhs == 0){
-//             Console.WriteLine("Can't divide by 0. Default to 1 for no error.");
-//             _rhs = 1;
-//         }else{
-//             _rhs = rhs;
-//         }
-//     }
-
-//     public void DisplayResult() {
-//         var result = Result();
-//         Console.WriteLine($"{_lhs} divided by {_rhs} is {result}");
-//     }
-// }
