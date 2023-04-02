@@ -8,15 +8,15 @@ class Pokemon
     private int _defense; //Reduce damage taken
     private int _attackPower;//Increase damage taken
     private string _defType;//Pokemon type
-    private List<Move> _moves = new List<Move>{Move num1, Move num2, Move num3, Move num4};//Pokemon moves
+    private List<Move> _moves = new List<Move>{};//Pokemon moves
 
     public Pokemon(
      string name,
-     int hp,
-     int speed,
-     int defense,
-     int attackPower,
      string defType,
+     int hp,
+     int attackPower,
+     int defense,
+     int speed,
      List<Move> moves){
         this._name=name;
         this._hp=hp;
@@ -49,9 +49,13 @@ class Pokemon
         return this._defType;
     }public virtual void SetDefType(string word){
         _defType = word;
-    }public virtual string GetMoves(){
-        return this._defType;
-    }public virtual void SetMoves(Move num1, Move num2, Move num3, Move num4){
-        _defType = word;
-    }
+    }public virtual List<Move> GetMoves(){
+        return this._moves;
+    }public virtual void SetMoves(List<Move> moves){
+        _moves = moves;
+    }public virtual Move GetMove(int move){
+        return this._moves[move];
+    }public virtual void TookDamage(int dmg){
+        SetHP(GetHP() - ((GetDefense()/100) * dmg));
+    }public virtual void DoThe4thMove(){}
 }

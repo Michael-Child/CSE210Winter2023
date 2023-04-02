@@ -1,28 +1,30 @@
 using System;
 
-public class Move{
+class Move{
     private string _name;
     private int _dmg;
     private string _offType;
-    public Move(string name,
-    int dmg,
-    string offType){
+    public Move(
+    string name,
+    string offType,
+    int dmg
+    ){
         this._name = name;
         this._dmg = dmg;
         this._offType = offType;
     }
 
-    public void SetName(string word){
+    public virtual void SetName(string word){
         _name = word;
-    }public string GetWName(){
+    }public virtual string GetName(){
         return _name;
-    }public void SetDamage(int word){
+    }public virtual void SetDamage(int word){
         _dmg = word;
-    }public int GetDamage(){
+    }public virtual int GetDamage(){
         return _dmg;
-    }public void SetOffType(string word){
+    }public virtual void SetOffType(string word){
         _offType = word;
-    }public string GetOffType(){
+    }public virtual string GetOffType(){
         return _offType;
     }
 }
