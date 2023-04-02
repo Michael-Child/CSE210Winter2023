@@ -10,7 +10,7 @@ class Venusaur: Pokemon{
     public Venusaur(): 
     base("Venusaur",
     "Grass",
-    80,
+    100,
     82,
     83,
     80,
