@@ -10,7 +10,7 @@ class MegaGyarados: Pokemon{
     public MegaGyarados(): 
     base("Mega Gyarados",
     "Dragon",
-    96,
+    100,
     155,
     109,
     50,

@@ -10,7 +10,7 @@ class Blastiose: Pokemon{
     public Blastiose(): 
     base("Blastiose",
     "Water",
-    79,
+    100,
     83,
     100,
     78,

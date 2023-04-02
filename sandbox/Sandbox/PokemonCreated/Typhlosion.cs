@@ -10,7 +10,7 @@ class Typhlosion: Pokemon{
     public Typhlosion(): 
     base("Typhlosion",
     "Fire",
-    78,
+    100,
     84,
     78,
     100,

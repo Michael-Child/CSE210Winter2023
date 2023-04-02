@@ -10,7 +10,7 @@ class Feraligatr: Pokemon{
     public Feraligatr(): 
     base("Feraligatr",
     "Water",
-    85,
+    100,
     105,
     100,
     78,

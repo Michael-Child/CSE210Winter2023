@@ -10,7 +10,7 @@ class Charizard: Pokemon{
     public Charizard(): 
     base("Charizard",
     "Fire",
-    78,
+    100,
     84,
     78,
     100,

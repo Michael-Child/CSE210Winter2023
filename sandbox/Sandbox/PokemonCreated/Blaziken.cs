@@ -10,7 +10,7 @@ class Blaziken: Pokemon{
     public Blaziken(): 
     base("Blaziken",
     "Fire",
-    80,
+    100,
     120,
     70,
     80,

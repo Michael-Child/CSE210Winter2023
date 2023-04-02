@@ -10,7 +10,7 @@ class Meganium: Pokemon{
     public Meganium(): 
     base("Meganium",
     "Grass",
-    80,
+    100,
     82,
     100,
     80,

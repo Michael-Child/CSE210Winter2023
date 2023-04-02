@@ -10,7 +10,7 @@ class Sceptile: Pokemon{
     public Sceptile(): 
     base("Sceptile",
     "Grass",
-    70,
+    100,
     85,
     65,
     120,
