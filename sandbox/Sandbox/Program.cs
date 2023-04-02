@@ -103,7 +103,7 @@ class Program
         List<Pokemon> temperaryList = PokemonSelection;
 
         for(int i = 0; i < 3; i++){
-            int num = 0;
+            int num = 1;
             foreach(var o in temperaryList){
                 num++;
                 Console.WriteLine($"{num}. {o.GetName()}");
